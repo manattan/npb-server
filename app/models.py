@@ -6,7 +6,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://manattan:@localhost/npb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-
 class uniformNumber(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     num = db.Column(db.Integer, nullable=False)

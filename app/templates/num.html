@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背番号 {{contents[0].num}} の詳細</title>
+</head>
+<body>
+    <h1>背番号 {{contents[0].num}} の詳細</h1>
+    <p><a href="/">topに戻る</a></p>
+    {% for content in contents %}
+    <div>
+        <p>team {{content.team}} 背番号: {{content.num}} {{content.history}}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list at npb in postgreSQL</title>
+</head>
+<body>
+    <h1>DBに入っている背番号経歴の一覧です.</h1>
+    {% for content in contents %}
+    <div>
+        <p>team <a href="/team/{{content.team}}">{{content.team}}</a> 背番号: <a href="/uniform/{{content.num}}">{{content.num}}</a> {{content.history}}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
