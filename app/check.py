@@ -8,6 +8,7 @@ def start():
         print(tweet)
         tweet_obj = Tweet(tweet)
 
-        print(tweet_obj)
+        text = tweet_obj.get_tweet_text().split()
+        print(text)
 
-        tweet_obj.reply()
+        tweet_obj.reply(str(text))

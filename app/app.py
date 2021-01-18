@@ -5,8 +5,6 @@ app = Flask(__name__)
 from app.models import uniformNumber
 from app.check import start
 
-start()
-
 @app.route('/')
 def index():
     contents = uniformNumber.query.all()
