@@ -1,6 +1,6 @@
 from app.info import twitter_stream
 from app.tweet import Tweet
-from app.search import search
+from app.search import searchhistory
 
 def start():
     tracking_text = '@manattan_me 背番号'
@@ -14,7 +14,7 @@ def start():
         if len(text) < 2:
             tweet_obj.reply("'背番号 [数字] [teamのアルファベット]' と正しくリプライしてね.")
         else:
-            res = search(text[2], text[3])
+            res = searchhistory(text[2], text[3])
             if res == []:
                 tweet_obj.reply('その背番号の選手がいないか, そもそもチームがないです')
             else:
