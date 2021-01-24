@@ -21,5 +21,6 @@ def start():
                     tweet_obj.reply('その背番号の選手がいないか, そもそもチームがないです')
                 else:
                     tweet_obj.reply(res)
+                    
     except twitter.api.TwitterHTTPError:
         print('420, 24時間後に試行してみてください.')
