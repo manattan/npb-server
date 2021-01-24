@@ -1,6 +1,6 @@
-from app.models import uniformNumber
+from app.models import Main
 
 def searchhistory(num, team):
-    content = uniformNumber.query.filter_by(num=num, team=team).all()[0]
+    content = Main.query.filter_by(num=num, teamname=team).all()[0]
     print(content)
     return content.history

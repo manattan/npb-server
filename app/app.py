@@ -2,38 +2,38 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-from app.models import uniformNumber
+from app.models import Main
 
 @app.route('/')
 def index():
-    contents = uniformNumber.query.all()
+    contents = Main.query.all()
     print(contents)
     return render_template("index.html", contents=contents)
 
 @app.route('/uniform/<num>')
 def uniform(num):
-    contents = uniformNumber.query.filter_by(num=num).all()
+    contents = Main.query.filter_by(num=num).all()
     print(contents)
     return render_template("num.html",contents=contents)
 
 @app.route('/team/<logo>')
 def team(logo):
-    contents = uniformNumber.query.filter_by(team=logo).all()
+    contents = Main.query.filter_by(teamname=logo).all()
     print(contents)
     return render_template("team.html", contents=contents)
 
 @app.route('/search', methods=["POST"])
 def search():
-    team = request.form["team"]
+    team = request.form["teamname"]
     num = request.form["number"]
-    print("{}, {}".format(team, num))
-    content = uniformNumber.query.filter_by(num=num, team=team).all()
+    print("{}, {}".format(teamname, num))
+    content = Main.query.filter_by(num=num, teamname=team).all()
     print(content)
     if content == []:
         print('なかったね')
-        return redirect(url_for("result", isExisted=False,num=num, team=team))
+        return redirect(url_for("result", isExisted=False,num=num, teamname=team))
     else:
-        return redirect(url_for("result", isExisted=True, history=content[0].history,num=num, team=team))
+        return redirect(url_for("result", isExisted=True, history=content[0].history,num=num, teamname=team))
 
 @app.route('/result')
 def result():
@@ -43,9 +43,9 @@ def result():
     team=request.args.get('team')
     print(history)
     if (isExisted):
-        return render_template("result.html", history=history, num=num,team=team)
+        return render_template("result.html", history=history, num=num,teamname=team)
     else:
-        return render_template("result.html",num=num,team=team)
+        return render_template("result.html",num=num,teamname=team)
 
 
 if __name__ == "__main__":
