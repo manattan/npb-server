@@ -26,10 +26,10 @@ def start():
                         tweet_obj.reply(res)
                         break
                     else:
-                        tweet = res[:160]
+                        twee = res[:160]
                         res = res[160:]
-                        print(tweet)
-                        tweet_obj.reply(tweet)
+                        print(twee)
+                        tweet_obj.reply(twee)
                     
     # except twitter.api.TwitterHTTPError:
     #     print('420, 24時間後に試行してみてください.')
