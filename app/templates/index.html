@@ -10,14 +10,14 @@
 
     <h2>検索</h2>
     <form action="/search" method="POST">
-        <input type="text" name="team" placeholder="チーム名" />
+        <input type="text" name="teamname" placeholder="チーム名" />
         <input type="text" name="number" placeholder="背番号" />
         <input type="submit" value="search" />
     </form>
 
     {% for content in contents %}
     <div>
-        <p>team <a href="/team/{{content.team}}">{{content.team}}</a> 背番号: <a href="/uniform/{{content.num}}">{{content.num}}</a> {{content.history}}</p>
+        <p>team <a href="/team/{{content.teamname}}">{{content.teamname}}</a> 背番号: <a href="/uniform/{{content.num}}">{{content.num}}</a> {{content.history}}</p>
     </div>
     {% endfor %}
 </body>

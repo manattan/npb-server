@@ -2,23 +2,23 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-from app.models import Main
+from app.models import allteam2020
 
 @app.route('/')
 def index():
-    contents = Main.query.all()
+    contents = allteam2020.query.all()
     print(contents)
     return render_template("index.html", contents=contents)
 
 @app.route('/uniform/<num>')
 def uniform(num):
-    contents = Main.query.filter_by(num=num).all()
+    contents = allteam2020.query.filter_by(num=num).all()
     print(contents)
     return render_template("num.html",contents=contents)
 
 @app.route('/team/<logo>')
 def team(logo):
-    contents = Main.query.filter_by(teamname=logo).all()
+    contents = allteam2020.query.filter_by(teamname=logo).all()
     print(contents)
     return render_template("team.html", contents=contents)
 
@@ -26,8 +26,8 @@ def team(logo):
 def search():
     team = request.form["teamname"]
     num = request.form["number"]
-    print("{}, {}".format(teamname, num))
-    content = Main.query.filter_by(num=num, teamname=team).all()
+    print("{}, {}".format(team, num))
+    content = allteam2020.query.filter_by(num=num, teamname=team).all()
     print(content)
     if content == []:
         print('なかったね')

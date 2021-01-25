@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{contents[0].team}} の一覧</title>
+    <title>{{contents[0].teamname}} の一覧</title>
 </head>
 <body>
-    <h1>{{contents[0].team}}の背番号の経歴</h1>
+    <h1>{{contents[0].teamname}}の背番号の経歴</h1>
     <p><a href="/">トップに戻る</a></p>
     {% for content in contents %}
     <div>
-        <p>team {{content.team}} 背番号:{{content.num}} {{content.history}}</p>
+        <p>team {{content.teamname}} 背番号:{{content.num}} {{content.history}}</p>
     </div>
     {% endfor %}
 </body>
