@@ -5,12 +5,12 @@ import schedule
 import time
 import twitter
 
-# def start():
-#     print('Hello!!!')
-#     schedule.every(10).minutes.do(do)
-#     while True:
-#         schedule.run_pending()
-#         time.sleep(10)
+def start():
+    print('Hello!!!')
+    schedule.every(20).seconds.do(do)
+    while True:
+        schedule.run_pending()
+        time.sleep(10)
 
 def start():
     tracking_text = '@manattan_me 背番号'
