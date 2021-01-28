@@ -7,7 +7,7 @@ import twitter
 
 def start():
     print('Hello!!!')
-    schedule.every(20).seconds.do(do)
+    schedule.every(5).seconds.do(do)
     while True:
         schedule.run_pending()
         time.sleep(10)
