@@ -12,7 +12,7 @@ def start():
         schedule.run_pending()
         time.sleep(10)
 
-def start():
+def do():
     tracking_text = '@manattan_me 背番号'
     print(tracking_text)
     try:
