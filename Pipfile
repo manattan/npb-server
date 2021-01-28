@@ -11,6 +11,7 @@ sqlalchemy = "*"
 beautifulsoup4 = "*"
 twitter = "*"
 schedule = "*"
+gunicorn = "*"
 
 [dev-packages]
 
