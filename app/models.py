@@ -1,8 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
+import os
 from app.app import app
 from datetime import datetime
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://manattan:@localhost/npb'
+user=os.environ['username']
+db = os.environ['db']
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{}:@localhost/{}'.format(user, db)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

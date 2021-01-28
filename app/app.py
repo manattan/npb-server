@@ -49,7 +49,3 @@ def result():
         return render_template("result.html", history=history, num=num,teamname=team)
     else:
         return render_template("result.html",num=num,teamname=team)
-
-if __name__=="__main__":
-    print("Heloo")
-    app.run(debug=True)
