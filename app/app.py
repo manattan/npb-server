@@ -5,7 +5,7 @@ app = Flask(__name__)
 from app.models import allteam2020
 from app.check import start
 
-start()
+# start()
 
 @app.route('/')
 def index():
