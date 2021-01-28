@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 from app.models import allteam2020
+from app.check import start
+
+start()
 
 @app.route('/')
 def index():
@@ -50,3 +53,4 @@ def result():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    print('Hello')

@@ -10,6 +10,7 @@ flask-sqlalchemy = "*"
 sqlalchemy = "*"
 beautifulsoup4 = "*"
 twitter = "*"
+schedule = "*"
 
 [dev-packages]
 
