@@ -41,3 +41,6 @@ def do():
                     
     except twitter.api.TwitterHTTPError:
         print('420, 24時間後に試行してみてください.')
+
+if __name__=="__main__":
+    start()
