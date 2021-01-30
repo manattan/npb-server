@@ -1,1 +1,1 @@
-web: python app/check.py
+web: gunicorn app.app:ap
