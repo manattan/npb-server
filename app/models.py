@@ -6,7 +6,8 @@ from datetime import datetime
 user=os.environ['username']
 db = os.environ['db']
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{}:@localhost/{}'.format(user, db)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{}:@localhost/{}'.format(user, db)
+app.config['SQLALCHEMY_DATABASE_URL'] = 'postgres://yqetdzwcoulinz:7eda3ffd13e03c3c5d5e701d2dfcab6b526d2663a9b7b858a1e043dc7befc2bb@ec2-52-6-75-198.compute-1.amazonaws.com:5432/d8qig3udtsa2l7'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
