@@ -5,10 +5,11 @@ app = Flask(__name__)
 from app.models import allteam2020
 from app.check import start
 
-start()
+# start()
 
 @app.route('/')
 def index():
+    print('Hello')
     contents = allteam2020.query.all()
     print(contents)
     return render_template("index.html", contents=contents)
@@ -49,3 +50,5 @@ def result():
         return render_template("result.html", history=history, num=num,teamname=team)
     else:
         return render_template("result.html",num=num,teamname=team)
+
+app.run()

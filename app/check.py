@@ -6,7 +6,7 @@ import time
 import twitter
 
 def start():
-    print('Hello!!!')
+    print('startしたよ')
     schedule.every(1).seconds.do(do)
     while True:
         schedule.run_pending()

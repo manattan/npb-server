@@ -1,15 +1,13 @@
 import twitter
 import os
-# import config
+from config import insertConfig
 
+insertConfig()
+print(os.environ)
 ACCESSTOKEN=os.getenv('ACCESSTOKEN')
-print(ACCESSTOKEN)
 ACCESSTOKENSECRET=os.getenv('ACCESSTOKENSECRET')
-print(ACCESSTOKENSECRET)
 APIKEY=os.getenv('APIKEY')
-print(APIKEY)
 APIKEYSECRET=os.getenv('APIKEYSECRET')
-print(APIKEYSECRET)
 
 oauth = twitter.OAuth(ACCESSTOKEN, ACCESSTOKENSECRET,APIKEY,APIKEYSECRET)
 
