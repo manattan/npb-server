@@ -2,7 +2,7 @@ import twitter
 import os
 from config import insertConfig
 
-insertConfig()
+# insertConfig()
 print(os.environ)
 ACCESSTOKEN=os.getenv('ACCESSTOKEN')
 ACCESSTOKENSECRET=os.getenv('ACCESSTOKENSECRET')
