@@ -1,6 +1,6 @@
 import twitter
 import os
-from config import insertConfig
+# from config import insertConfig
 
 # insertConfig()
 print(os.environ)
