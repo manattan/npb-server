@@ -10,7 +10,7 @@ def start():
     schedule.every(1).seconds.do(do)
     while True:
         schedule.run_pending()
-        time.sleep(10)
+        time.sleep(1)
 
 def do():
     tracking_text = '@manattan_me 背番号'

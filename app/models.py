@@ -3,11 +3,7 @@ import os
 from app.app import app
 from datetime import datetime
 
-# user=os.environ['username']
-# db = os.environ['db']
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{}:@localhost/{}'.format(user, db)
-app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite://yqetdzwcoulinz:@ec2-52-6-75-198.compute-1.amazonaws.com:5432/d8qig3udtsa2l7'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
