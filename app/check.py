@@ -10,7 +10,7 @@ def start():
     schedule.every(1).seconds.do(do)
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(10)
 
 def do():
     tracking_text = '@manattan_me 背番号'
@@ -39,8 +39,8 @@ def do():
                             res = res[160:]
                             tweet_obj.reply(twee)
                     
-    except twitter.api.TwitterHTTPError:
-        print('420, 24時間後に試行してみてください.')
+    except twitter.api.TwitterHTTPError as err:
+        print(err)
 
 if __name__=="__main__":
     start()
