@@ -12,6 +12,7 @@ beautifulsoup4 = "*"
 twitter = "*"
 schedule = "*"
 gunicorn = "*"
+flask-cors = "*"
 
 [dev-packages]
 

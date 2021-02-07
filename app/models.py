@@ -3,10 +3,11 @@ import os
 from app.app import app
 from datetime import datetime
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://manattan:@localhost/npb'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://manattan:@localhost/npb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 
 class allteam2020(db.Model):
     id = db.Column(db.Integer, primary_key=True)
