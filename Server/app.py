@@ -22,7 +22,7 @@ def get_all(query):
 def searchByTeam():
     team = request.args.get('team')
     print('GET searchByTeam ', team)
-    query = "select * from allteam2020 where teamname='{}' order by num ASC;".format(
+    query = "select * from allteam2020 where teamname='{}' order by id ASC;".format(
         team)
     result = get_all(query)
     response = []
@@ -30,6 +30,20 @@ def searchByTeam():
         response.append(
             {'teamname': result[i].teamname, 'num': result[i].num, 'history': result[i].history, 'id': result[i].id})
     return jsonify({'data': response})
+
+@app.route('/api/num', methods=["GET"])
+def searchByNum():
+    num = request.args.get('num')
+    print('GET searchByNum ', num)
+    query = "select * from allteam2020 where num='{}' order by id ASC;".format(
+        num)
+    result = get_all(query)
+    response = []
+    for i in range(len(result)):
+        response.append(
+            {'teamname': result[i].teamname, 'num': result[i].num, 'history': result[i].history, 'id': result[i].id})
+    return jsonify({'data': response})
+
 
 
 @app.route('/api/keyword', methods=["GET"])
