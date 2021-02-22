@@ -51,7 +51,7 @@ def result():
         return render_template("result.html", num=num, teamname=team)
 
 
-@app.route('/api/all')
+@app.route('/api/all', methods=["GET"])
 def getAllList():
     contents = allteam2020.query.all()
     result = []
@@ -61,7 +61,7 @@ def getAllList():
     return jsonify({'data': result})
 
 
-@app.route('/api/team/')
+@app.route('/api/team', methods=["GET"])
 def get():
     query = request.args.get('team')
     contents = allteam2020.query.filter_by(teamname=query).all()
