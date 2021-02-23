@@ -17,6 +17,12 @@ def get_all(query):
     finally:
         con.close()
 
+def convertToRes(arr):
+    response = []
+    for i in range(len(arr)):
+        response.append({'teamname': arr[i].teamname, 'num': arr[i].num, 'history': arr[i].history, 'id': arr[i].id})
+    return response
+
 
 @app.route('/api/team', methods=["GET"])
 def searchByTeam():
@@ -25,10 +31,7 @@ def searchByTeam():
     query = "select * from allteam2020 where teamname='{}' order by id ASC;".format(
         team)
     result = get_all(query)
-    response = []
-    for i in range(len(result)):
-        response.append(
-            {'teamname': result[i].teamname, 'num': result[i].num, 'history': result[i].history, 'id': result[i].id})
+    response = convertToRes(result)
     return jsonify({'data': response})
 
 @app.route('/api/num', methods=["GET"])
@@ -38,26 +41,17 @@ def searchByNum():
     query = "select * from allteam2020 where num='{}' order by id ASC;".format(
         num)
     result = get_all(query)
-    response = []
-    for i in range(len(result)):
-        response.append(
-            {'teamname': result[i].teamname, 'num': result[i].num, 'history': result[i].history, 'id': result[i].id})
+    response = convertToRes(result)
     return jsonify({'data': response})
 
-
-
 @app.route('/api/keyword', methods=["GET"])
-@cross_origin(supports_credentials=True)
 def searchByKeyword():
     key = request.args.get('keyword')
     print('GET searchByKeyword ', key)
     query = "select * from allteam2020 where history like '%%{}%%' order by id ASC;".format(
         key)
     result = get_all(query)
-    response = []
-    for i in range(len(result)):
-        response.append(
-            {'teamname': result[i].teamname, 'num': result[i].num, 'history': result[i].history,'id': result[i].id})
+    response = convertToRes(result)
     return jsonify({'data': response})
 
 
