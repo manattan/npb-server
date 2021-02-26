@@ -72,13 +72,19 @@ def registerUser():
     payload = request.json
     currentq = "select * from userlist"
     res = get_all(currentq)
+    print(res)
+    for i in range(len(res)):
+        if res[i]['uid'] == payload.get('uid'):
+            print({'info': 'すでに会員登録されています'})
+            return jsonify({'info': 'すでに会員登録されています'})
     id = len(res) + 1
     print({'id': id, 'uid': payload.get('uid'), 'email': payload.get(
         'email'), 'name': payload.get('name')})
     query = "insert into userlist values({}, '{}', '{}', '{}')".format(
         id, payload.get('uid'), payload.get('email'), payload.get('name'))
     insert(query)
-    return jsonify({'data': 1})
+    print({'info': '新規登録しました'})
+    return jsonify({'info': '新規登録しました'})
 
 
 if __name__ == "__main__":
