@@ -26,11 +26,19 @@ def insert(query):
         con.close()
 
 
-def convertToRes(arr):
+def convertData(arr):
     response = []
     for i in range(len(arr)):
         response.append(
             {'teamname': arr[i].teamname, 'num': arr[i].num, 'history': arr[i].history, 'id': arr[i].id})
+    return response
+
+
+def convertReq(arr):
+    response = []
+    for i in range(len(arr)):
+        response.append({'id': arr[i].id, 'uid': arr[i].uid, 'dataid': arr[i].dataid,
+                         'prevent': arr[i].prevent, 'new': arr[i].new, 'merged': arr[i].merged})
     return response
 
 
@@ -41,7 +49,7 @@ def searchByTeam():
     query = "select * from info where teamname='{}' order by id ASC;".format(
         team)
     result = get_all(query)
-    response = convertToRes(result)
+    response = convertData(result)
     return jsonify({'data': response})
 
 
@@ -52,7 +60,7 @@ def searchByNum():
     query = "select * from info where num='{}' order by id ASC;".format(
         num)
     result = get_all(query)
-    response = convertToRes(result)
+    response = convertData(result)
     return jsonify({'data': response})
 
 
@@ -63,16 +71,15 @@ def searchByKeyword():
     query = "select * from info where history like '%%{}%%' order by id ASC;".format(
         key)
     result = get_all(query)
-    response = convertToRes(result)
+    response = convertData(result)
     return jsonify({'data': response})
 
 
 @app.route('/api/register/user', methods=["POST"])
 def registerUser():
     payload = request.json
-    currentq = "select * from userlist"
+    currentq = "select * from userlist;"
     res = get_all(currentq)
-    print(res)
     for i in range(len(res)):
         if res[i]['uid'] == payload.get('uid'):
             print({'info': 'すでに会員登録されています'})
@@ -80,11 +87,32 @@ def registerUser():
     id = len(res) + 1
     print({'id': id, 'uid': payload.get('uid'), 'email': payload.get(
         'email'), 'name': payload.get('name')})
-    query = "insert into userlist values({}, '{}', '{}', '{}')".format(
+    query = "insert into userlist values({}, '{}', '{}', '{}');".format(
         id, payload.get('uid'), payload.get('email'), payload.get('name'))
     insert(query)
     print({'info': '新規登録しました'})
     return jsonify({'info': '新規登録しました'})
+
+
+@app.route('/api/editrequest', methods=["POST"])
+def requestEdit():
+    payload = request.json
+    currentq = "select * from request"
+    res = get_all(currentq)
+    id = len(res) + 1
+    query = "insert into request values({}, '{}', '{}', '{}', '{}', {});".format(
+        id, payload.get('uid'), payload.get('id'), payload.get('prevent'), payload.get('new'), 0)
+    insert(query)
+    print({'info': 'リクエストが登録されました'})
+    return jsonify({'info': 'リクエストが登録されました'})
+
+
+@app.route('/api/getRequest', methods=["GET"])
+def getRequest():
+    query = "select * from request;"
+    results = get_all(query)
+    response = convertReq(results)
+    return jsonify({'data': response})
 
 
 if __name__ == "__main__":
