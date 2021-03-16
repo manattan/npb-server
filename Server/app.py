@@ -100,7 +100,7 @@ def requestEdit():
     currentq = "select * from request"
     res = get_all(currentq)
     id = len(res) + 1
-    query = "insert into request values({}, '{}', '{}', '{}', '{}', {});".format(
+    query = "insert into request values({}, '{}', {}, '{}', '{}', {});".format(
         id, payload.get('uid'), payload.get('id'), payload.get('prevent'), payload.get('new'), 0)
     insert(query)
     print({'info': 'リクエストが登録されました'})
@@ -109,10 +109,23 @@ def requestEdit():
 
 @app.route('/api/getRequest', methods=["GET"])
 def getRequest():
-    query = "select * from request;"
+    query = "select * from request where merged=0;"
     results = get_all(query)
     response = convertReq(results)
     return jsonify({'data': response})
+
+@app.route('/api/mergeRequest', methods=["POST"])
+def mergeRequest():
+    id = request.json.get('id')
+    query = "select * from request where id={};".format(id)
+    results = get_all(query)
+    alterquery = "update info set history='{}' where id={}".format(results[0].new, results[0].dataid)
+    insert(alterquery)
+    mergequery = "update request set merged=1 where id={}".format(id)
+    insert(mergequery)
+    print({'info': 'リクエストがmergeされました'})
+    return jsonify({'info': 'リクエストがmergeされました'})
+
 
 
 if __name__ == "__main__":
