@@ -2,12 +2,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
-import Server.config
+import os
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-URL = config.DATABASE_URL
+URL = os.environ["DAtABASE_URL"]
 
 engine = create_engine(
     URL, poolclass=QueuePool)
