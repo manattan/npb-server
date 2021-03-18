@@ -117,16 +117,23 @@ def getRequest():
 @app.route('/api/mergeRequest', methods=["POST"])
 def mergeRequest():
     id = request.json.get('id')
-    query = "select * from request where id={};".format(id)
+    query = "select * from request where dataid={};".format(id)
     results = get_all(query)
-    alterquery = "update info set history='{}' where id={}".format(results[0].new, results[0].dataid)
+    alterquery = "update info set history='{}' where id={}".format(results[0].new, id)
     insert(alterquery)
     mergequery = "update request set merged=1 where id={}".format(id)
     insert(mergequery)
     print({'info': 'リクエストがmergeされました'})
     return jsonify({'info': 'リクエストがmergeされました'})
 
-
+@app.route('/api/rejectRequest', methods=["POST"])
+def rejectRequest():
+    id = request.json.get('id')
+    print(id)
+    query = "update request set merged=2 where dataid={}".format(id)
+    insert(query)
+    print({'info': 'リクエストがrejectされました'})
+    return jsonify({'info': 'リクエストがrejectされました'})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=2000, debug=True)
