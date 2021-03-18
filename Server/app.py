@@ -2,13 +2,13 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
+import config
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
 engine = create_engine(
-    f'postgresql://manattan:@localhost/npb', poolclass=QueuePool)
-
+    f'{}'.format(config.DATABASE_URL), poolclass=QueuePool)
 
 def get_all(query):
     con = engine.connect()

@@ -5,12 +5,7 @@ name = "pypi"
 
 [packages]
 Flask = "*"
-psycopg2-binary = "*"
-flask-sqlalchemy = "*"
 sqlalchemy = "*"
-beautifulsoup4 = "*"
-twitter = "*"
-schedule = "*"
 gunicorn = "*"
 flask-cors = "*"
 
