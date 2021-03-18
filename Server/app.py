@@ -7,8 +7,10 @@ import config
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
+URL = config.DATABASE_URL
+
 engine = create_engine(
-    f'{}'.format(config.DATABASE_URL), poolclass=QueuePool)
+    URL, poolclass=QueuePool)
 
 def get_all(query):
     con = engine.connect()
