@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-URL = os.environ["DATABASE_URL"]
+URL = os.environ["DATABASE"]
 
 engine = create_engine(
     URL, poolclass=QueuePool)
