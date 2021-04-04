@@ -114,6 +114,7 @@ def getRequest():
 @app.route('/api/mergeRequest', methods=["POST"])
 def mergeRequest():
     id = request.json.get('id')
+    print({'id: ', id})
     query = "select * from request where id={};".format(id)
     results = get_all(query)
     print(results)
