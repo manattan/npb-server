@@ -123,7 +123,7 @@ def mergeRequest():
     results = get_all(query)
     alterquery = "update info set history='{}' where id={}".format(results[0].new, id)
     insert(alterquery)
-    mergequery = "update request set merged=1 where id={}".format(id)
+    mergequery = "update request set merged=1 where dataid={}".format(id)
     insert(mergequery)
     print({'info': 'リクエストがmergeされました'})
     return jsonify({'info': 'リクエストがmergeされました'})
