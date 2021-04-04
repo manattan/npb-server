@@ -47,7 +47,6 @@ def convertReq(arr):
 @app.route('/api/team', methods=["GET"])
 def searchByTeam():
     team = request.args.get('team')
-    print('GET searchByTeam ', team)
     query = "select * from info where teamname='{}' order by id ASC;".format(
         team)
     result = get_all(query)
@@ -58,7 +57,6 @@ def searchByTeam():
 @app.route('/api/num', methods=["GET"])
 def searchByNum():
     num = request.args.get('num')
-    print('GET searchByNum ', num)
     query = "select * from info where num='{}' order by id ASC;".format(
         num)
     result = get_all(query)
@@ -69,7 +67,6 @@ def searchByNum():
 @app.route('/api/keyword', methods=["GET"])
 def searchByKeyword():
     key = request.args.get('keyword')
-    print('GET searchByKeyword ', key)
     query = "select * from info where history like '%%{}%%' order by id ASC;".format(
         key)
     result = get_all(query)
@@ -87,8 +84,6 @@ def registerUser():
             print({'info': 'すでに会員登録されています'})
             return jsonify({'info': 'すでに会員登録されています'})
     id = len(res) + 1
-    print({'id': id, 'uid': payload.get('uid'), 'email': payload.get(
-        'email'), 'name': payload.get('name')})
     query = "insert into userlist values({}, '{}', '{}', '{}');".format(
         id, payload.get('uid'), payload.get('email'), payload.get('name'))
     insert(query)
@@ -121,7 +116,9 @@ def mergeRequest():
     id = request.json.get('id')
     query = "select * from request where dataid={};".format(id)
     results = get_all(query)
+    print(results)
     alterquery = "update info set history='{}' where id={}".format(results[0].new, id)
+    print(alterquery)
     insert(alterquery)
     mergequery = "update request set merged=1 where dataid={}".format(id)
     insert(mergequery)
@@ -131,7 +128,6 @@ def mergeRequest():
 @app.route('/api/rejectRequest', methods=["POST"])
 def rejectRequest():
     id = request.json.get('id')
-    print(id)
     query = "update request set merged=2 where dataid={}".format(id)
     insert(query)
     print({'info': 'リクエストがrejectされました'})
