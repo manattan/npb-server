@@ -129,7 +129,7 @@ def mergeRequest():
 @app.route('/api/rejectRequest', methods=["POST"])
 def rejectRequest():
     id = request.json.get('id')
-    query = "update request set merged=2 where dataid={}".format(id)
+    query = "update request set merged=2 where id={}".format(id)
     insert(query)
     print({'info': 'リクエストがrejectされました'})
     return jsonify({'info': 'リクエストがrejectされました'})
